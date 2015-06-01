@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+  <head>
+    <meta charset="UTF-8">
+    <title>ToDo - Angular</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src='angular.js' type='text/javascript'></script>
+    <script src='scripts.js' type='text/javascript'></script>
+  </head>
+  <body>
+    <div ng-controller='todoController'>
+      Enter Text and Hit Enter
+      <form ng-submit="submit()">
+        <input type="text" ng-model="text" name="text">
+      </form>
+    </div>
+    <div ng-controller='todosController'>
+      <h3>To Do:</h3>
+      <ul>
+        <li ng-repeat="task in todos">{{ task }}</li>
+      </ul>
+    </div>
+  </body>
+</html>

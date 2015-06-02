@@ -6,18 +6,16 @@ app.controller('todosController', ['$scope', '$http', function ($scope, $http) {
   $http.get('todos.json').success(function(data){
     $scope.todos = data.todos;
   });
-}]);
 
-app.controller('todoController', ['$scope', '$http', function ($scope, $http) {
-  console.log($scope.todos);
   $scope.submit = function() {
     if ($scope.text) {
       $scope.todos.push($scope.text);
       $scope.text = '';
+
+      $http.post('http://localhost:8080/todos.json', {"task": $scope.todos}).success(function(data){
+        $scope.msg = 'Data saved';
+        console.log('success');
+      });
     }
   };
-  // var newTodoJson = $scope.todos.push(angular.element);
-  $http.post('todos.json', {}).success(function(data){
-    $scope.todos = data.todos;
-  });
 }]);

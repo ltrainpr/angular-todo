@@ -18,7 +18,16 @@
 
       <h3>To Do:</h3>
       <ul>
-        <li ng-repeat="task in todos">{{ task }}</li>
+        <li ng-repeat="todo in todos track by $index">
+          <input type="checkbox"
+           ng-model="todo.value"
+           ng-change="selectEntity(todo)"
+            name="selection">
+          {{ todo.task }}
+          <span ng-click="destroyTask(todo)">
+            <img src="http://png-2.findicons.com/files/icons/2015/24x24_free_application/24/erase.png" alt="">
+          </span>
+        </li>
       </ul>
     </div>
   </body>

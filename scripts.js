@@ -2,20 +2,32 @@
 var app = angular.module('app', []);
 
 app.controller('todosController', ['$scope', '$http', function ($scope, $http) {
-  $scope.todos = {};
-  $http.get('todos.json').success(function(data){
-    $scope.todos = data.todos;
-  });
+  var getTodos = localStorage.getItem('todos') || JSON.stringify( { "todos": [{"task": "Numero Uno", "value": false}, {"task": "Numero Dos", "value": false}] });
 
+
+  $scope.todos = JSON.parse(getTodos).todos;
   $scope.submit = function() {
     if ($scope.text) {
-      $scope.todos.push($scope.text);
+      $scope.todos.push({ "task": $scope.text, "value": false });
       $scope.text = '';
-
-      $http.post('http://localhost:8080/todos.json', {"task": $scope.todos}).success(function(data){
-        $scope.msg = 'Data saved';
-        console.log('success');
-      });
+      localStorage.setItem('todos', JSON.stringify({"todos": $scope.todos }));
     }
   };
+
+  $scope.selectEntity = function(todo){
+    localStorage.setItem('todos', JSON.stringify({"todos": $scope.todos }));
+  };
+
+  $scope.destroyTask = function(todo){
+    var todos = JSON.parse(localStorage.getItem('todos'));
+    for (var i = todos.todos.length - 1; i >= 0; i--) {
+      if (todos.todos[i].task == todo.task) {
+        todos.todos.splice(i, 1);
+      }
+    }
+
+    localStorage.setItem('todos', JSON.stringify({"todos": todos.todos}));
+    location.reload();
+  };
+
 }]);

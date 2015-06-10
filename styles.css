@@ -1,0 +1,49 @@
+body {
+  background-color: cornsilk;
+  font-family: fantasy;
+}
+
+.notebook {
+  width: 300px;
+  background-color: white;
+  margin: 0 auto;
+  border: black 2px solid;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.remove {
+  display: inline-block;
+  float: right;
+  margin-top: 3px;
+}
+
+.remove img {
+  width: 15px;
+  float: right;
+}
+
+.todos-controller {
+  text-align: center;
+}
+
+.new-todo {
+  border-radius: 4px;
+  height: 20px;
+  width: 180px;
+}
+
+.todos li {
+  text-align: left;
+  width: 180px;
+  border-bottom: aliceblue 1.5px solid;
+  padding-left: 57px;
+  padding-right: 63px;
+}
+
+.task {
+  display: inline;
+}

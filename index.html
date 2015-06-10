@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+  <head>
+    <meta charset="UTF-8">
+    <title>ToDo - Angular</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src='angular.js' type='text/javascript'></script>
+    <script src='app.module.js' type='text/javascript'></script>
+    <script src='todosController.js' type='text/javascript'></script>
+  </head>
+  <body>
+    <div ng-controller='todosController' class='todos-controller'>
+      <div class="notebook">
+        Enter Text and Hit Enter
+
+        <form ng-submit="submit()">
+          <input type="text" ng-model="text" name="text" class='new-todo'>
+        </form>
+
+        <h3>To Do:</h3>
+        <div class="todos">
+          <ul>
+            <li ng-repeat="todo in todos track by $index" class='' ng-show="todo.value === false">
+              <input type="checkbox"
+               ng-model="todo.value"
+               ng-change="selectEntity(todo)"
+                name="selection">
+              <p class='task' >{{ todo.task }}</p>
+              <span ng-click="destroyTask(todo)" class='remove'>
+                <img src="http://png-2.findicons.com/files/icons/2015/24x24_free_application/24/erase.png" alt="">
+              </span>
+            </li>
+          </ul>
+          <h3>Completed ToDos: </h3>
+          <ul>
+            <li ng-repeat="todo in todos track by $index" class='' ng-show="todo.value === true">
+              <input type="checkbox"
+               ng-model="todo.value"
+               ng-change="selectEntity(todo)"
+                name="selection">
+              <p class='task' >{{ todo.task }}</p>
+              <span ng-click="destroyTask(todo)" class='remove'>
+                <img src="http://png-2.findicons.com/files/icons/2015/24x24_free_application/24/erase.png" alt="">
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

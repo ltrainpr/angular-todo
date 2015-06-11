@@ -31,7 +31,8 @@
       }
 
       localStorage.setItem('todos', JSON.stringify({"todos": todos.todos}));
-      location.reload();
+
+      $scope.todos = JSON.parse(localStorage.getItem('todos')).todos;
     };
   }
 })();
